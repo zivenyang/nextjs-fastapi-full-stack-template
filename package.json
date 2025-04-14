@@ -1,0 +1,27 @@
+{
+  "name": "nextjs-fastapi-full-stack-template",
+  "version": "0.1.0",
+  "description": "Next.js + FastAPI Full Stack Template",
+  "main": "index.js",
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "build:web": "pnpm --filter web build",
+    "start:web": "pnpm --filter web start",
+    "lint:web": "pnpm --filter web lint",
+    "dev:api": "cd apps/api && uv run fastapi dev", 
+    "dev": "echo '启动前端和后端...' && pnpm run dev:web & pnpm run dev:api" 
+  },
+  "keywords": [
+    "nextjs",
+    "fastapi",
+    "full-stack",
+    "template"
+  ],
+  "author": "yangziwen",
+  "license": "MIT",
+  "packageManager": "pnpm@10.7.1",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=10"
+  }
+}
