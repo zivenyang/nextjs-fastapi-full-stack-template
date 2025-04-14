@@ -1,0 +1,33 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      # Next.js 需要知道后端的地址才能在服务端组件(RSC/SSR)中调用 API
+      # 使用 Docker Compose 提供的服务名 'api'
+      - NEXT_PUBLIC_API_URL=http://api:8000 # 前端浏览器访问的地址 (如果需要)
+      - API_INTERNAL_URL=http://api:8000 # 服务端组件访问的内部地址
+      - NODE_ENV=production
+    depends_on:
+      - api # 确保 API 服务先启动 (但不保证 API 完全可用)
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

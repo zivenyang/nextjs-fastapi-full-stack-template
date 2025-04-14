@@ -150,6 +150,18 @@ gunicorn -w 4 -k uvicorn.workers.UvicornWorker apps.api.main:app
 uvicorn apps.api.main:app --host 0.0.0.0 --port 8000 --proxy-headers
 ```
 
+## 🐳 Docker
+
+项目提供了 `docker-compose.yml` 文件用于简化容器化部署。
+
+```bash
+# 构建并启动服务
+docker-compose up --build -d
+
+# 停止并移除容器
+docker-compose down
+```
+
 ## 🔮 AI 集成
 
 该脚手架设计用于轻松集成各种 AI 服务：
